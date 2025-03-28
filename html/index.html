@@ -1,0 +1,63 @@
+<html>
+  <head>
+    <title>HDACS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <div class="slide">
+      <h1>Menu</h1>
+      <ul>
+        <li><button onclick="changeFrame('lora')"> LoRa Management</button></li>
+        <li><button onclick="changeFrame('logs')">Logs</button></li>
+        <li><button onclick="changeFrame('user_management')">User Management</button></li>
+        <li><button onclick="changeFrame('vping')">VOIP Connection Test</button></li>
+        <li><button onclick="changeFrame('dial')">VOIP Dialer</button></li>
+        <li><button onclick="changeFrame('message')">VOIP Messaging</button></li>
+      </ul>
+    </div>
+    
+    <!-- Initially setting the iframe with a default src -->
+    <iframe width="1000px" height="1000px" name="framee" src="./logs.html" title="internal frame"></iframe>
+
+    <script>
+      // Ensure the DOM is fully loaded before accessing elements
+      window.onload = function() {
+        let getframename = document.getElementsByName("framee")[0];  // Access the iframe by its name attribute
+
+        function changeFrame(frame) {
+          if (getframename) {  // Ensure the iframe element is found
+            switch (frame) {
+              case "lora":
+                getframename.src = "./lora.html";
+                break;
+              case "logs":
+                getframename.src = "./logs.html";
+                break;
+              case "user_management":
+                getframename.src = "./user_mngnt.html";
+                break;
+              case "dial":
+                getframename.src = "./voip_dial.html";
+                break;
+              case "vping":
+                getframename.src = "./voip_ping.html";
+                break;
+              case "message":
+                getframename.src = "./voip_message.html";
+                break;
+              default:
+                getframename.src = "./404.html";
+                break;
+            }
+          } else {
+            console.error("No iframe with name 'framee' found!");
+          }
+        }
+        
+        // Optionally, expose the function globally if needed
+        window.changeFrame = changeFrame;
+      }
+    </script>
+  </body>
+</html>
